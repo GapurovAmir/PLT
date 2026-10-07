@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #9face6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 450px;
+    padding: 30px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-top: 0;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    background: #4caf50;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #388e3c;
+}
+
+#message {
+    min-height: 20px;
+    color: #e53935;
+    font-size: 14px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 8px 0;
+    padding: 12px;
+    background: #f3f3f3;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+li:hover {
+    background: #e8f5e9;
+}
+
+li.completed {
+    text-decoration: line-through;
+    color: #888;
+    background: #dcedc8;
+}
+
+.delete-btn {
+    background: #e53935;
+    padding: 6px 10px;
+}
+
+.delete-btn:hover {
+    background: #c62828;
+}
+
+.clear-btn {
+    width: 100%;
+    margin-top: 10px;
+    background: #555;
+}
+
+.clear-btn:hover {
+    background: #333;
+}

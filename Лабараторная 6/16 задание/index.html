@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanban Board</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>📋 Kanban Board</h1>
+
+    <div class="add-task">
+        <input
+            type="text"
+            id="cardInput"
+            placeholder="Название новой задачи"
+        >
+        <button id="addCardBtn">Добавить карточку</button>
+    </div>
+
+    <p id="message"></p>
+
+    <div class="board">
+
+        <section class="column">
+            <h2>Новые</h2>
+            <div class="cards" id="newCards"></div>
+        </section>
+
+        <section class="column">
+            <h2>В работе</h2>
+            <div class="cards" id="progressCards"></div>
+        </section>
+
+        <section class="column">
+            <h2>Готово</h2>
+            <div class="cards" id="doneCards"></div>
+        </section>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

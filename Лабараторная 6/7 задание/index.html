@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>✅ To-Do List</h1>
+
+    <div class="input-group">
+        <input
+            type="text"
+            id="taskInput"
+            placeholder="Введите задачу"
+        >
+        <button id="addTaskBtn">Добавить</button>
+    </div>
+
+    <div class="statistics">
+        <span>Всего: <b id="totalCount">0</b></span>
+        <span>Выполнено: <b id="completedCount">0</b></span>
+    </div>
+
+    <ul id="taskList"></ul>
+
+    <button id="clearCompleted" class="clear-btn">
+        Очистить выполненные
+    </button>
+
+    <p id="message"></p>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
