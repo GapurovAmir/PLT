@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QualityControl — контроль качества продукции</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">QC</span><span>QualityControl<small>Контроль пищевой продукции</small></span></div>
+    <span class="demo-pill">Учебный проект</span>
+  </header>
+  <main class="layout">
+    <section class="intro">
+      <div class="eyebrow">СИСТЕМА ПРОВЕРКИ КАЧЕСТВА</div>
+      <h1>Проверяйте показатели.<br><em>Принимайте решения увереннее.</em></h1>
+      <p>Введите данные партии, сравните их с заданными учебными диапазонами и получите отчёт об отклонениях.</p>
+      <div class="stats">
+        <div><strong id="checkedCount">0</strong><span>проверок за сеанс</span></div>
+        <div><strong id="passedCount">0</strong><span>соответствуют заданным нормам</span></div>
+        <div><strong id="issueCount">0</strong><span>с отклонениями</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><div class="eyebrow">НОВАЯ ПРОВЕРКА</div><h2>Данные партии</h2></div>
+        <span class="step">01 / 02</span>
+      </div>
+      <form id="qualityForm">
+        <div class="form-grid">
+          <label>Название продукта<input id="productName" required maxlength="60" placeholder="Например, молоко"></label>
+          <label>Номер партии<input id="batchNumber" required maxlength="30" placeholder="Например, M-104"></label>
+          <label>Категория продукта
+            <select id="category">
+              <option value="chilled">Охлаждённый продукт</option>
+              <option value="dry">Сухой продукт</option>
+              <option value="frozen">Замороженный продукт</option>
+            </select>
+          </label>
+          <label>Температура, °C<input id="temperature" type="number" step="0.1" required placeholder="Например, 4"></label>
+          <label>Уровень pH<input id="ph" type="number" min="0" max="14" step="0.1" required placeholder="Например, 6.7"></label>
+          <label>Масса упаковки, г<input id="mass" type="number" min="0" step="0.1" required placeholder="Например, 500"></label>
+        </div>
+        <fieldset>
+          <legend>Визуальный осмотр</legend>
+          <label class="radio-option"><input type="radio" name="visual" value="ok" checked> Без видимых отклонений</label>
+          <label class="radio-option"><input type="radio" name="visual" value="issue"> Обнаружены отклонения</label>
+        </fieldset>
+        <div class="limits-box">
+          <div><strong>Учебные контрольные диапазоны</strong><p id="limitDescription">Для охлаждённого продукта</p></div>
+          <div class="limits" id="limitsText"></div>
+        </div>
+        <p class="disclaimer">Важно: диапазоны приведены только для демонстрации работы алгоритма и не являются официальными нормативами безопасности пищевых продуктов.</p>
+        <div class="actions">
+          <button class="primary" type="submit">Проверить партию <span>→</span></button>
+          <button class="secondary" type="reset" id="resetButton">Очистить форму</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel result-panel" id="resultPanel" aria-live="polite">
+      <div class="panel-head"><div><div class="eyebrow">РЕЗУЛЬТАТ</div><h2>Отчёт проверки</h2></div><span class="step">02 / 02</span></div>
+      <div id="emptyState" class="empty-state"><div class="empty-icon">✓</div><h3>Пока нет результатов</h3><p>Заполните форму выше и нажмите «Проверить партию».</p></div>
+      <div id="resultContent" hidden></div>
+    </section>
+
+    <section class="panel history-panel">
+      <div class="panel-head"><div><div class="eyebrow">ЖУРНАЛ</div><h2>История проверок</h2></div><button id="clearHistory" class="text-button" type="button">Очистить журнал</button></div>
+      <div id="historyEmpty" class="history-empty">Проверки, выполненные в этом сеансе, появятся здесь.</div>
+      <div class="table-wrap"><table id="historyTable" hidden><thead><tr><th>Партия</th><th>Продукт</th><th>Дата и время</th><th>Результат</th></tr></thead><tbody id="historyBody"></tbody></table></div>
+    </section>
+  </main>
+  <footer><span>QualityControl · СРО №12</span><span>Демонстрационная система · данные не сохраняются на сервере</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
