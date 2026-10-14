@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8fc">
+  <title>Dayflow — Task Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-icon">✳</span> dayflow</a>
+      <p class="side-label">РАБОЧЕЕ ПРОСТРАНСТВО</p>
+      <nav class="side-nav" aria-label="Фильтр задач">
+        <button class="nav-item active" data-filter="all"><span>▦</span> Все задачи <b id="count-all">0</b></button>
+        <button class="nav-item" data-filter="active"><span>◷</span> В процессе <b id="count-active">0</b></button>
+        <button class="nav-item" data-filter="done"><span>✓</span> Выполненные <b id="count-done">0</b></button>
+      </nav>
+      <div class="sidebar-bottom"><div class="avatar">S</div><div><strong>Мой план</strong><small>Личное пространство</small></div></div>
+    </aside>
+    <main class="main-panel">
+      <header class="page-header"><div><p class="eyebrow">ПЛАНИРУЙ СВОЙ ДЕНЬ</p><h1>Мои задачи<span class="period">.</span></h1><p class="subheading">Маленькие шаги приводят к большим результатам.</p></div><div class="date-pill" id="today"></div></header>
+      <section class="summary">
+        <div class="summary-card"><span class="summary-icon purple">▦</span><div><small>Всего задач</small><strong id="summary-all">0</strong></div></div>
+        <div class="summary-card"><span class="summary-icon orange">◷</span><div><small>В процессе</small><strong id="summary-active">0</strong></div></div>
+        <div class="summary-card"><span class="summary-icon green">✓</span><div><small>Завершено</small><strong id="summary-done">0</strong></div></div>
+      </section>
+      <section class="task-panel">
+        <div class="panel-heading"><div><h2 id="list-title">Все задачи</h2><p>Управляй списком и отмечай прогресс.</p></div><span class="live-badge"><i></i> В работе</span></div>
+        <form id="task-form" class="task-form"><span class="plus">＋</span><input id="task-input" type="text" maxlength="100" placeholder="Добавить новую задачу..." required><button type="submit">Добавить задачу <span>↗</span></button></form>
+        <p id="message" role="status"></p>
+        <div id="content" aria-live="polite"></div>
+      </section>
+      <footer>DAYFLOW <span>Организуй мысли. Двигайся вперёд.</span></footer>
+    </main>
+  </div>
+</body>
+</html>

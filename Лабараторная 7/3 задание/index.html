@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101828">
+  <title>Student Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="site-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Главная"><span class="brand-mark">S</span><span>student<span class="brand-dot">.</span></span></a>
+      <span class="topbar-note">Личное портфолио</span>
+    </header>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">ПРИВЕТ, МИР!</p>
+        <h1>Создаю цифровые<br><span>вещи с идеей.</span></h1>
+        <p class="hero-description">Изучаю веб-разработку, экспериментирую с кодом и превращаю идеи в работающие проекты.</p>
+        <button class="hero-button" data-page="projects">Посмотреть проекты <span>↗</span></button>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="art-card"><span class="code-tag">&lt;/&gt;</span><span class="art-caption">build · learn · repeat</span><div class="art-lines"><i></i><i></i><i></i></div></div>
+        <span class="float-chip chip-one">HTML</span><span class="float-chip chip-two">CSS</span><span class="float-chip chip-three">JS</span>
+      </div>
+    </section>
+    <nav class="tabs" aria-label="Разделы портфолио">
+      <button class="tab active" data-page="about">Обо мне</button>
+      <button class="tab" data-page="skills">Навыки</button>
+      <button class="tab" data-page="projects">Проекты</button>
+    </nav>
+    <main id="content" aria-live="polite"></main>
+    <footer><span>Сделано с любопытством.</span><span>© <span id="year"></span> Student Portfolio</span></footer>
+  </div>
+</body>
+</html>

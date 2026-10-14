@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#111827">
+  <title>Northstar — Academic Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#"><span class="brand-symbol">N</span><span>northstar<span class="brand-dot">.</span></span></a>
+    <p class="nav-caption">WORKSPACE</p>
+    <nav aria-label="Разделы журнала">
+      <button class="nav-link active" data-page="students"><span>◫</span> Студенты</button>
+      <button class="nav-link" data-page="grades"><span>▤</span> Оценки</button>
+      <button class="nav-link" data-page="stats"><span>◩</span> Статистика</button>
+    </nav>
+    <div class="sidebar-bottom"><div class="profile-avatar">A</div><div><strong>Academic office</strong><small>Панель управления</small></div><span class="more">•••</span></div>
+  </aside>
+  <main class="main">
+    <header class="topbar"><div><p class="breadcrumb">WORKSPACE <span>/</span> ACADEMICS</p><h1 id="page-title">Студенты</h1></div><div class="top-actions"><span class="term-pill"><i></i> Учебный журнал</span><div class="user-avatar">A</div></div></header>
+    <section class="welcome"><div><p class="welcome-kicker">АКАДЕМИЧЕСКАЯ ПАНЕЛЬ</p><h2>Учёт успеваемости<span>.</span></h2><p>Управляйте студентами, оценками и результатами в одном месте.</p></div><div class="welcome-mark">N<span>↗</span></div></section>
+    <section class="metrics" id="metrics"></section>
+    <section class="content-panel"><div id="content" aria-live="polite"></div></section>
+    <footer><span>NORTHSTAR ACADEMIC SYSTEM</span><span>Учёт · Аналитика · Результаты</span></footer>
+  </main>
+</body>
+</html>
