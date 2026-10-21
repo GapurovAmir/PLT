@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QualityControl — контроль качества продукции</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23168354'/%3E%3Cpath d='M9 17l5 5 9-11' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">QC</span><span>QualityControl<small>Контроль пищевой продукции</small></span></div>
+    <div class="top-actions"><button class="icon-btn" id="themeToggle" type="button" aria-label="Переключить тему">Тема</button><span class="demo-pill">Учебный проект</span></div>
+  </header>
+  <main class="layout">
+    <section class="intro">
+      <div class="eyebrow">СИСТЕМА ПРОВЕРКИ КАЧЕСТВА</div>
+      <h1>Проверяйте показатели.<br><em>Принимайте решения увереннее.</em></h1>
+      <p>Введите данные партии, сравните их с заданными учебными диапазонами и получите отчёт об отклонениях.</p>
+      <div class="rate"><div class="rate-track"><div id="rateBar"></div></div><div class="rate-row"><span id="rateText"></span><span class="ribbon" id="ribbon" aria-hidden="true"></span></div></div>
+      <div class="stats">
+        <div><strong id="checkedCount">0</strong><span>проверок за сеанс</span></div>
+        <div><strong id="passedCount">0</strong><span>соответствуют заданным нормам</span></div>
+        <div><strong id="issueCount">0</strong><span>с отклонениями</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div><div class="eyebrow">НОВАЯ ПРОВЕРКА</div><h2>Данные партии</h2></div>
+        <span class="step">01 / 02</span>
+      </div>
+      <form id="qualityForm">
+        <div class="quick-bar"><span>Быстрый старт:</span><button type="button" class="chip-btn" id="fillGood">Пример: всё в норме</button><button type="button" class="chip-btn" id="fillBad">Пример: с отклонениями</button></div>
+        <div class="form-grid">
+          <label>Название продукта<input id="productName" required maxlength="60" placeholder="Например, молоко"></label>
+          <label>Номер партии<input id="batchNumber" required maxlength="30" placeholder="Например, M-104"></label>
+          <label>Категория продукта
+            <select id="category">
+              <option value="chilled">Охлаждённый продукт</option>
+              <option value="dry">Сухой продукт</option>
+              <option value="frozen">Замороженный продукт</option>
+            </select>
+          </label>
+          <label>Температура, °C<input id="temperature" type="number" step="0.1" required placeholder="Например, 4"></label>
+          <label>Уровень pH<input id="ph" type="number" min="0" max="14" step="0.1" required placeholder="Например, 6.7"></label>
+          <label>Масса упаковки, г<input id="mass" type="number" min="0" step="0.1" required placeholder="Например, 500"></label>
+          <label>Номинальная масса, г<input id="nominal" type="number" min="0" step="0.1" placeholder="Пусто — равна массе"></label>
+        </div>
+        <fieldset>
+          <legend>Визуальный осмотр</legend>
+          <label class="radio-option"><input type="radio" name="visual" value="ok" checked> Без видимых отклонений</label>
+          <label class="radio-option"><input type="radio" name="visual" value="issue"> Обнаружены отклонения</label>
+        </fieldset>
+        <div class="limits-box">
+          <div><strong>Учебные контрольные диапазоны</strong><p id="limitDescription">Для охлаждённого продукта</p></div>
+          <div class="limits" id="limitsText"></div>
+        </div>
+        <details class="settings"><summary>Настроить диапазоны для этой категории</summary>
+          <p class="set-help">Слева — минимум, справа — максимум. Изменения применяются сразу и сохраняются в браузере.</p>
+          <div class="set-grid" id="setGrid"></div>
+          <button class="chip-btn" type="button" id="resetLimits">Вернуть значения по умолчанию</button>
+        </details>
+        <p class="disclaimer">Важно: диапазоны приведены только для демонстрации работы алгоритма и не являются официальными нормативами безопасности пищевых продуктов.</p>
+        <p class="form-error" id="formError" role="alert" hidden></p>
+        <div class="actions">
+          <button class="primary" type="submit">Проверить партию <span>→</span></button>
+          <button class="secondary" type="reset" id="resetButton">Очистить форму</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="panel result-panel" id="resultPanel" aria-live="polite">
+      <div class="panel-head"><div><div class="eyebrow">РЕЗУЛЬТАТ</div><h2>Отчёт проверки</h2></div><span class="step">02 / 02</span></div>
+      <div id="emptyState" class="empty-state"><div class="empty-icon">✓</div><h3>Пока нет результатов</h3><p>Заполните форму выше и нажмите «Проверить партию».</p></div>
+      <div id="resultContent" hidden></div>
+      <div class="actions result-actions" id="resultActions" hidden><button class="secondary" type="button" id="copyReport">Скопировать отчёт</button><button class="secondary" type="button" id="printReport">Печать</button></div>
+    </section>
+
+    <section class="panel history-panel">
+      <div class="panel-head"><div><div class="eyebrow">ЖУРНАЛ</div><h2>История проверок</h2></div><div class="head-btns"><button id="exportCsv" class="text-button" type="button">Скачать CSV</button><button id="clearHistory" class="text-button" type="button">Очистить журнал</button></div></div>
+      <div class="hist-tools"><input id="histSearch" type="search" placeholder="Поиск по партии или продукту" aria-label="Поиск"><select id="histFilter" aria-label="Фильтр"><option value="all">Все результаты</option><option value="pass">Только соответствуют</option><option value="fail">Только с отклонениями</option></select></div>
+      <div id="historyEmpty" class="history-empty">Проверки, выполненные в этом сеансе, появятся здесь.</div>
+      <div id="noMatch" class="history-empty" hidden>Ничего не найдено. Измените поиск или фильтр.</div>
+      <div class="table-wrap"><table id="historyTable" hidden><thead><tr><th>Партия</th><th>Продукт</th><th>Дата и время</th><th>Результат</th><th></th></tr></thead><tbody id="historyBody"></tbody></table></div>
+    </section>
+  </main>
+  <footer><span>QualityControl · СРО №12</span><span>Демонстрационная система · журнал хранится только в вашем браузере</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
